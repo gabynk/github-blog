@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components'
 
 export const HomeContainer = styled.div`
   height: 100vh;
@@ -9,7 +9,7 @@ export const ProfileCard = styled.div`
   display: flex;
   border-radius: 10px;
   padding: 2rem;
-  background: ${props => props.theme['blue-600']};
+  background: ${(props) => props.theme['blue-600']};
   gap: 2rem;
 
   & img {

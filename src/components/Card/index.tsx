@@ -1,14 +1,10 @@
-import { ReactNode } from "react";
-import { CardContainer } from "./styles";
+import { ReactNode } from 'react'
+import { CardContainer } from './styles'
 
 interface CardProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 export function Card({ children }: CardProps) {
-  return (
-    <CardContainer>
-      {children}
-    </CardContainer>
-  )
+  return <CardContainer>{children}</CardContainer>
 }

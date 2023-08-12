@@ -1,9 +1,9 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components'
 
 export const DefaultLayoutContainer = styled.main`
   width: 100vw;
   height: 100vh;
-  background: ${props => props.theme['blue-900']};
+  background: ${(props) => props.theme['blue-900']};
 `
 
 export const HeaderLogo = styled.header`
@@ -20,7 +20,7 @@ export const HeaderLogo = styled.header`
 `
 
 export const BodyContainer = styled.div`
- width: 100vw;
- position: absolute;
- top: 208px;
+  width: 100vw;
+  position: absolute;
+  top: 208px;
 `
