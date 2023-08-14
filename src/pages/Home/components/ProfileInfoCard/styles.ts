@@ -16,11 +16,6 @@ export const ProfileInfoCardContainer = styled.div`
   @media (max-width: 650px) {
     flex-direction: column;
     padding: 1rem;
-
-    /* & img {
-      width: 5rem;
-      height: 5rem;
-    } */
   }
 `
 
