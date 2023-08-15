@@ -45,9 +45,9 @@ export const User = styled.div`
     display: flex;
     gap: 8px;
     color: ${(props) => props.theme['sky-100']};
-    font-variant: small-caps;
-    line-height: 0.7;
+    text-transform: uppercase;
     text-decoration: none;
+    font-size: 0.75rem;
   }
   & a:hover {
     text-decoration: underline;
