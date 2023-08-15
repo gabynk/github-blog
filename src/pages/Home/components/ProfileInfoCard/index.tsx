@@ -1,38 +1,40 @@
+import { useContext } from 'react'
 import { ArrowSquareOut, GithubLogo, Buildings, Users } from 'phosphor-react'
+
+import { UserContext } from '../../../../contexts/UserContext'
+
 import { ProfileInfoCardContainer, ProfileInfo, User, UserInfo } from './styles'
 
 export function ProfileInfoCard() {
+  const { user } = useContext(UserContext)
+
   return (
     <ProfileInfoCardContainer>
-      <img src="https://github.com/gabynk.png" alt="" />
+      <img src={user?.avatar_url} alt="" />
 
       <ProfileInfo>
         <User>
-          <span>Gabriele Nakassima</span>
-          <a href="">
+          <span>{user?.name}</span>
+          <a href={user?.html_url} target="_blank" rel="noreferrer">
             github
             <ArrowSquareOut size={12} />
           </a>
         </User>
 
-        <p>
-          Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-          viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat
-          pulvinar vel mass.
-        </p>
+        <p>{user?.bio?.substring(0, 180).concat('...') ?? '-'}</p>
 
         <UserInfo>
           <div>
             <GithubLogo size={16} />
-            gabynk
+            {user?.login}
           </div>
           <div>
             <Buildings size={16} />
-            Rocketseat
+            {user?.company ?? '-'}
           </div>
           <div>
             <Users size={16} />
-            32 seguidores
+            {user?.followers} seguidores
           </div>
         </UserInfo>
       </ProfileInfo>

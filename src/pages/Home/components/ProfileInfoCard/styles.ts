@@ -20,11 +20,13 @@ export const ProfileInfoCardContainer = styled.div`
 `
 
 export const ProfileInfo = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 
   & p {
+    min-height: 3.5rem;
     color: ${(props) => props.theme['blue-200']};
     margin-top: 0.5rem;
     line-height: 160%;
