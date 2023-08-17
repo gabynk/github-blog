@@ -30,6 +30,7 @@ export interface Post {
 interface UserContextType {
   user: User | null
   posts: Post[]
+  fetchIssues: (data: string) => Promise<void>
 }
 
 interface UserProviderProps {
@@ -89,7 +90,7 @@ export function UserProvider({ children }: UserProviderProps) {
   }, [fetchPosts])
 
   return (
-    <UserContext.Provider value={{ user, posts }}>
+    <UserContext.Provider value={{ user, posts, fetchIssues }}>
       {children}
     </UserContext.Provider>
   )
