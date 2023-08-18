@@ -5,14 +5,18 @@ export const DefaultLayoutContainer = styled.main`
   height: 100vh;
 `
 
-export const HeaderLogo = styled.header`
+interface HeaderLogoProps {
+  src: string
+}
+
+export const HeaderLogo = styled.header<HeaderLogoProps>`
   width: 100%;
   height: 18.5rem;
   display: flex;
   align-items: center;
   justify-items: center;
   padding: 0;
-  background-image: url('src/assets/background.png');
+  background-image: ${(props) => `url(${props.src})`};
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

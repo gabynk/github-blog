@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { Post, UserContext } from '../../contexts/UserContext'
+import { PostData, UserContext } from '../../contexts/UserContext'
 import { PostCard } from './components/PostCard'
 import { ProfileInfoCard } from './components/ProfileInfoCard'
 import { SearchForm } from './components/SearchForm'
@@ -21,7 +21,7 @@ export function Home() {
       <SearchForm />
 
       <PostsContainer>
-        {posts.map((post: Post) => {
+        {posts.map((post: PostData) => {
           return <PostCard key={post.id} post={post} />
         })}
       </PostsContainer>

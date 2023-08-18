@@ -8,6 +8,11 @@ export const PostCardContainer = styled.div`
   gap: 1.25rem;
   background: ${(props) => props.theme['blue-600']};
 
+  &:hover {
+    border: 1px solid ${(props) => props.theme['blue-400']};
+    cursor: pointer;
+  }
+
   & div {
     display: flex;
     justify-content: space-between;

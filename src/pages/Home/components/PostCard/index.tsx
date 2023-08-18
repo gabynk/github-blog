@@ -1,6 +1,7 @@
 import { formatDistance } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import { PostCardContainer } from './styles'
+import { useNavigate } from 'react-router-dom'
 
 export interface Post {
   id: number
@@ -16,8 +17,14 @@ interface PostCard {
 }
 
 export function PostCard({ post }: PostCard) {
+  const navigate = useNavigate()
+
+  function handleGoToPost() {
+    navigate(`/post/${post.id}`)
+  }
+
   return (
-    <PostCardContainer>
+    <PostCardContainer onClick={handleGoToPost}>
       <div>
         <h1>{post.title}</h1>
         <span>

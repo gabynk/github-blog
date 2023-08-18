@@ -18,7 +18,7 @@ interface User {
   login: string
 }
 
-export interface Post {
+export interface PostData {
   id: number
   html_url: string
   title: string
@@ -29,8 +29,8 @@ export interface Post {
 
 interface UserContextType {
   user: User | null
-  posts: Post[]
-  fetchIssues: (data: string) => Promise<void>
+  posts: PostData[]
+  fetchPosts: (data: string) => Promise<void>
 }
 
 interface UserProviderProps {
@@ -43,16 +43,16 @@ export function UserProvider({ children }: UserProviderProps) {
   const [user, setUser] = useState<User | null>(null)
   const [posts, setPosts] = useState<[]>([])
 
-  const fetchIssues = useCallback(async (data?: string) => {
+  const fetchPosts = useCallback(async (data?: string) => {
     const query = data ?? ''
-    const response = await api.get(`https://api.github.com/search/issues`, {
+    const response = await api.get(`/search/issues`, {
       params: {
         q: `${query}repo:gabynk/github-blog`,
       },
     })
 
     if (response.status === 200) {
-      const getPosts = response.data.items.map((item: Post) => {
+      const getPosts = response.data.items.map((item: PostData) => {
         return {
           id: item.id,
           html_url: item.html_url,
@@ -66,8 +66,8 @@ export function UserProvider({ children }: UserProviderProps) {
     }
   }, [])
 
-  const fetchPosts = useCallback(async () => {
-    const response = await api.get('https://api.github.com/users/gabynk')
+  const fetchUser = useCallback(async () => {
+    const response = await api.get('/users/gabynk')
 
     if (response.status === 200) {
       const getUser = {
@@ -80,17 +80,17 @@ export function UserProvider({ children }: UserProviderProps) {
         login: response.data.login,
       } as User
       setUser(getUser)
-      fetchIssues()
+      fetchPosts()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
-    fetchPosts()
-  }, [fetchPosts])
+    fetchUser()
+  }, [fetchUser])
 
   return (
-    <UserContext.Provider value={{ user, posts, fetchIssues }}>
+    <UserContext.Provider value={{ user, posts, fetchPosts }}>
       {children}
     </UserContext.Provider>
   )

@@ -15,7 +15,7 @@ const searchFormSchema = z.object({
 type SearchFormInputs = z.infer<typeof searchFormSchema>
 
 export function SearchForm() {
-  const { fetchIssues } = useContext(UserContext)
+  const { fetchPosts } = useContext(UserContext)
 
   const {
     register,
@@ -26,7 +26,7 @@ export function SearchForm() {
   })
 
   async function handleSearchPost(data: SearchFormInputs) {
-    await fetchIssues(data.query)
+    await fetchPosts(data.query)
   }
 
   return (
