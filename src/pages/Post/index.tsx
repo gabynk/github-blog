@@ -2,6 +2,10 @@ import { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { formatDistance } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import SyntaxHighlighter from 'react-syntax-highlighter'
+import { nord } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
 import { PostData, UserContext } from '../../contexts/UserContext'
 
@@ -12,7 +16,13 @@ import {
   ChatCircle,
   ArrowSquareOut,
 } from 'phosphor-react'
-import { Links, PostContainer, PostInfo, UserInfo } from './styles'
+import {
+  IssueContent,
+  Links,
+  PostContainer,
+  PostInfo,
+  UserInfo,
+} from './styles'
 
 export function Post() {
   const { id } = useParams()
@@ -66,6 +76,34 @@ export function Post() {
           </div>
         </UserInfo>
       </PostInfo>
+
+      <IssueContent>
+        <ReactMarkdown
+          remarkPlugins={[[remarkGfm]]}
+          components={{
+            h1: 'h2',
+            code({ inline, className, children, ...props }) {
+              const match = /language-(\w+)/.exec(className || '')
+              return !inline && match ? (
+                <SyntaxHighlighter
+                  {...props}
+                  language="javascript"
+                  style={nord}
+                  customStyle={{ borderRadius: '2px' }}
+                >
+                  {String(children).replace(/\n$/, '')}
+                </SyntaxHighlighter>
+              ) : (
+                <code {...props} className={className}>
+                  {children}
+                </code>
+              )
+            },
+          }}
+        >
+          {issue?.body ?? ''}
+        </ReactMarkdown>
+      </IssueContent>
     </PostContainer>
   )
 }

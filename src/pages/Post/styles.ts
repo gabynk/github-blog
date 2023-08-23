@@ -67,3 +67,33 @@ export const UserInfo = styled.div`
     flex-direction: column;
   }
 `
+
+export const IssueContent = styled.div`
+  padding: 2.5rem 2rem;
+  color: ${(props) => props.theme['blue-200']};
+  font-family: 'Nunito', sans-serif;
+  line-height: 160%;
+
+  & h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin: 1.25rem 0;
+    text-align: justify;
+  }
+
+  & a {
+    color: ${(props) => props.theme['sky-100']};
+  }
+
+  & ul {
+    margin: 1rem 2rem;
+  }
+
+  & pre {
+    margin: 0.5rem 0;
+  }
+`
